@@ -14,7 +14,6 @@ function optionChanged() {
 }
 
 function updateDemoBox(metadata) {
-    console.log('meta: ', metadata)
     let box = d3.select(("#sample-metadata"))  // id, ethnicity, gender, age, location, bbtype, wfreq
     box.html("")
     for (const prop in metadata) {
@@ -52,17 +51,18 @@ function createCharts(rawData) {
     let trace2 = [{
         x: data['samples'][sampleIdx]['otu_ids'], // 3a. Use otu_ids for the x values.
         y: data['samples'][sampleIdx]['sample_values'], // 3b. Use sample_values for the y values.
+        mode:'markers',
         text: data['samples'][sampleIdx]['otu_labels'], // 3e. Use otu_labels for the text values.
         marker: {
             size: data['samples'][sampleIdx]['sample_values'], // 3c. Use sample_values for the marker size.
-            color:data['samples'][sampleIdx]['otu_ids'] // 3d. Use otu_ids for the marker colors.
+            color: data['samples'][sampleIdx]['otu_ids'] // 3d. Use otu_ids for the marker colors.
         }
     }];
 
     let layout2 = {
         xaxis: {title: 'OTU ID'},
         showlegend: false,
-        height: 600,
+        height: 500,
         width: 1000
         };
         
